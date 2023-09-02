@@ -64,12 +64,12 @@ public class AddLibrarianPage extends JFrame {
             String addr = addrField.getText();
             String cityVal = cityField.getText();
             String contactVal = contactField.getText();
-            int id;
-            Librararian l = null;
-            String nameRegex = "[A-Za-z\s\\.]+";
+//            int id;
+            Librararian l;
+            String nameRegex = "[A-Za-z .]+";
             String pwdRegex = ".{5,}";
             String emailRegex = "[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
-            String addrRegex = "[A-Za-z0-9-_\s,\\.]+";
+            String addrRegex = "[A-Za-z0-9-_ ,.]+";
             String cityRegex = "[A-Za-z]+";
             String contactRegex = "(\\+[0-9]{2})*[0-9]{10}";
             Pattern namePattern = Pattern.compile(nameRegex);

@@ -4,7 +4,6 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ViewIssuedBooksPage extends JFrame {
     Container c;

@@ -1,7 +1,5 @@
 package SwingDemos;
 
-import com.mysql.cj.util.DnsSrv;
-
 public class IssuedBook {
     private int id;
     private String bookCallNo;

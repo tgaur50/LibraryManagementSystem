@@ -2,7 +2,6 @@ package SwingDemos;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 public class AdminPage extends JFrame {
     Container c;
@@ -25,17 +24,11 @@ public class AdminPage extends JFrame {
         c.add(deleteLibrarian);
         c.add(logout);
 
-        addLibrarian.addActionListener(e -> {
-            new AddLibrarianPage();
-        });
+        addLibrarian.addActionListener(e -> new AddLibrarianPage());
 
-        viewLibrarian.addActionListener(e -> {
-            new ViewLibrarianPage();
-        });
+        viewLibrarian.addActionListener(e -> new ViewLibrarianPage());
 
-        deleteLibrarian.addActionListener(e -> {
-            new DeleteLibrarianPage();
-        });
+        deleteLibrarian.addActionListener(e -> new DeleteLibrarianPage());
 
         logout.addActionListener(e -> {
             JOptionPane.showMessageDialog(this, "Logged Out!");

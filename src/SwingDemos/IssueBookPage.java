@@ -62,7 +62,7 @@ public class IssueBookPage extends JFrame {
 
             String callNoRegex = "[A-Za-z]{1}@[0-9]+";
             String stuIdRegex = "[0-9]+";
-            String stuNameRegex = "[A-Za-z\s\\.]+";
+            String stuNameRegex = "[A-Za-z .]+";
             String stuContactRegex = "(\\+[0-9]{2})*[0-9]{10}";
 
             Pattern callNoPattern = Pattern.compile(callNoRegex);
@@ -97,7 +97,7 @@ public class IssueBookPage extends JFrame {
                 JOptionPane.showMessageDialog(this, error);
             }
             else {
-                int id;
+//                int id;
                 boolean isFound = false;
                 ArrayList<Books> list = LibrarianDao.getAllBooks();
                 for (Books b : list) {
@@ -120,16 +120,13 @@ public class IssueBookPage extends JFrame {
                         break;
                     }
                 }
-                if (isFound) {
-                } else {
+                if (!isFound) {
                     JOptionPane.showMessageDialog(this, "Book is not found in the library!");
                 }
             }
         });
 
-        back.addActionListener(e -> {
-            dispose();
-        });
+        back.addActionListener(e -> dispose());
 
         setLayout(null);
         setVisible(true);

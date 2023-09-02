@@ -4,15 +4,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-import SwingDemos.LibraryManagement;
-
 class LibraryHomePage extends JFrame {
     Container c;
     public LibraryHomePage(){
         LibraryManagement lm = new LibraryManagement();
-        ArrayList<Librararian> listOfLibrarians = lm.getListOfLibrarians();
-        ArrayList<Books> listOfBooks = lm.getListOfBooks();
-        ArrayList<IssuedBook> listOfIssuedBooks = lm.getListOfIssuedBooks();
+//        ArrayList<Librararian> listOfLibrarians = lm.getListOfLibrarians();
+//        ArrayList<Books> listOfBooks = lm.getListOfBooks();
+//        ArrayList<IssuedBook> listOfIssuedBooks = lm.getListOfIssuedBooks();
         c = getContentPane();
         JLabel label = new JLabel("Library Management");
         label.setBounds(200, 100, 200, 50);
@@ -21,13 +19,9 @@ class LibraryHomePage extends JFrame {
         JButton librarian = new JButton("Librarian Login");
         librarian.setBounds(200, 220, 200, 50);
 
-        admin.addActionListener(e -> {
-            new AdminLogin();
-        });
+        admin.addActionListener(e -> new AdminLogin());
 
-        librarian.addActionListener(e -> {
-            new LibrarianLogin();
-        });
+        librarian.addActionListener(e -> new LibrarianLogin());
 
         c.add(label);
         c.add(admin);
@@ -42,6 +36,6 @@ class LibraryHomePage extends JFrame {
 
 public class HomePage {
     public static void main(String[] args) {
-        LibraryHomePage lhp = new LibraryHomePage();
+        new LibraryHomePage();
     }
 }

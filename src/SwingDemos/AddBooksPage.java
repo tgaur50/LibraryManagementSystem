@@ -3,7 +3,6 @@ package SwingDemos;
 import javax.swing.*;
 import java.awt.*;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -60,10 +59,10 @@ public class AddBooksPage extends JFrame {
             String bQuantity = quantField.getText();
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String date = df.format(new Date());
-            int id;
+//            int id;
 
             String callNoRegex = "[A-Za-z]{1}@[0-9]+";
-            String nameRegex = "[A-Za-z0-9\s\\.]+";
+            String nameRegex = "[A-Za-z0-9 .]+";
             String intRegex = "[0-9]+";
 
             Pattern callNoPattern = Pattern.compile(callNoRegex);
@@ -132,9 +131,7 @@ public class AddBooksPage extends JFrame {
             }
         });
 
-        back.addActionListener(e -> {
-            dispose();
-        });
+        back.addActionListener(e -> dispose());
 
         setLayout(null);
         setVisible(true);

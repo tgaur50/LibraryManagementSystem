@@ -2,12 +2,11 @@ package SwingDemos;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 public class LibrarianPage extends JFrame {
     Container c;
     public LibrarianPage(){
-        LibraryManagement lm = new LibraryManagement();
+//        LibraryManagement lm = new LibraryManagement();
         c = getContentPane();
         JLabel label = new JLabel("Librarian Section");
         label.setBounds(200, 100, 200, 50);
@@ -32,25 +31,15 @@ public class LibrarianPage extends JFrame {
         c.add(returnBook);
         c.add(logout);
 
-        addBooks.addActionListener(e -> {
-            new AddBooksPage();
-        });
+        addBooks.addActionListener(e -> new AddBooksPage());
 
-        viewBooks.addActionListener(e -> {
-            new ViewBooksPage();
-        });
+        viewBooks.addActionListener(e -> new ViewBooksPage());
 
-        issueBook.addActionListener(e -> {
-            new IssueBookPage();
-        });
+        issueBook.addActionListener(e -> new IssueBookPage());
 
-        viewIssuedBooks.addActionListener(e -> {
-            new ViewIssuedBooksPage();
-        });
+        viewIssuedBooks.addActionListener(e -> new ViewIssuedBooksPage());
 
-        returnBook.addActionListener(e -> {
-            new ReturnBookPage();
-        });
+        returnBook.addActionListener(e -> new ReturnBookPage());
 
         logout.addActionListener(e -> {
             JOptionPane.showMessageDialog(this, "Logged Out!");

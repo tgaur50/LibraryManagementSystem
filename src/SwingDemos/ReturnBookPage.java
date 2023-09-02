@@ -84,17 +84,13 @@ public class ReturnBookPage extends JFrame {
                         break;
                     }
                 }
-                if (isFound) {
-
-                } else {
+                if (!isFound) {
                     JOptionPane.showMessageDialog(this, "Sorry, unable to return book!");
                 }
             }
         });
 
-        back.addActionListener(e -> {
-            dispose();
-        });
+        back.addActionListener(e -> dispose());
 
         setLayout(null);
         setVisible(true);

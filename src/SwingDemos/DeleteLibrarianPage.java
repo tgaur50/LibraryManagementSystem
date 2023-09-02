@@ -21,7 +21,7 @@ public class DeleteLibrarianPage extends JFrame {
         c.add(back);
 
         delete.addActionListener(e -> {
-            int numRows = 0;
+            int numRows;
             int idVal = Integer.parseInt(idField.getText());
             numRows = AdminDao.deleteLibrarian(idVal);
             if (numRows > 0){
