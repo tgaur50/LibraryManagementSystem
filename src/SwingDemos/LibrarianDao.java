@@ -86,7 +86,7 @@ public class LibrarianDao {
         boolean isDone = false;
         try {
             Connection con = CreateConnection.createConnection();
-            ArrayList<Books> list = getAllBooks();
+//            getAllBooks();
             String query1 = "delete from IssuedBooks where id=?";
             String query2 = "update Books SET quantity=?, issued=? where id=?";
             PreparedStatement prepStm1 = con.prepareStatement(query1);
