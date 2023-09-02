@@ -2,11 +2,10 @@ package SwingDemos;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 public class DeleteLibrarianPage extends JFrame {
     Container c;
-    public DeleteLibrarianPage(ArrayList<Librararian> list){
+    public DeleteLibrarianPage(){
         c = getContentPane();
         JLabel id = new JLabel("Enter Id:");
         id.setBounds(50, 100, 100, 50);
@@ -22,16 +21,10 @@ public class DeleteLibrarianPage extends JFrame {
         c.add(back);
 
         delete.addActionListener(e -> {
-            boolean isFound = false;
+            int numRows = 0;
             int idVal = Integer.parseInt(idField.getText());
-            for (int i = 0; i < list.size(); i++){
-                if ((i + 1) == idVal){
-                    isFound = true;
-                    list.remove(i);
-                    break;
-                }
-            }
-            if (isFound){
+            numRows = AdminDao.deleteLibrarian(idVal);
+            if (numRows > 0){
                 JOptionPane.showMessageDialog(this, "Librarian deleted successfully!");
                 dispose();
             }

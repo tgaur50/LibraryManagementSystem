@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 
 public class IssueBookPage extends JFrame {
     Container c;
-    public IssueBookPage(ArrayList<Books> list, ArrayList<IssuedBook> issuedBooksList){
+    public IssueBookPage(){
         c = getContentPane();
         JLabel label = new JLabel("Issue Book");
         label.setBounds(200, 50, 200, 50);
@@ -99,23 +99,28 @@ public class IssueBookPage extends JFrame {
             else {
                 int id;
                 boolean isFound = false;
-                for (int i = 0; i < list.size(); i++) {
-                    Books book = list.get(i);
-                    if (book.getQuantity() == 0) {
-                        break;
-                    } else if (book.getCallNo().equalsIgnoreCase(callNo)) {
+                ArrayList<Books> list = LibrarianDao.getAllBooks();
+                for (Books b : list) {
+                    if (b.getCallNo().equalsIgnoreCase(callNo)) {
                         isFound = true;
-                        id = book.getId();
-                        list.get(i).setQuantity(book.getQuantity() - 1);
-                        list.get(i).setIssuedQuantity(book.getIssuedQuantity() + 1);
-                        IssuedBook b = new IssuedBook(id, callNo, stuId, stuName, stuContact, date);
-                        issuedBooksList.add(b);
+                        IssuedBook book = new IssuedBook();
+                        book.setBookCallNo(callNo);
+                        book.setStudentId(stuId);
+                        book.setStudentName(stuName);
+                        book.setStudentContact(stuContact);
+                        book.setIssuedDate(date);
+                        if (LibrarianDao.updateBook(b, book)){
+                            JOptionPane.showMessageDialog(this, "Book is issued successfully!");
+                            dispose();
+                        }
+                        else
+                        {
+                            JOptionPane.showMessageDialog(this, "Error while updating the Books table in DB!");
+                        }
                         break;
                     }
                 }
                 if (isFound) {
-                    JOptionPane.showMessageDialog(this, "Book is issued successfully!");
-                    dispose();
                 } else {
                     JOptionPane.showMessageDialog(this, "Book is not found in the library!");
                 }

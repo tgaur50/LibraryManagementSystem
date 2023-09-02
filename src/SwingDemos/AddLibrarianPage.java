@@ -2,13 +2,12 @@ package SwingDemos;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class AddLibrarianPage extends JFrame {
     Container c;
-    public AddLibrarianPage(ArrayList<Librararian> list){
+    public AddLibrarianPage(){
         c = getContentPane();
 
         JLabel label = new JLabel("Add Librarian");
@@ -91,13 +90,13 @@ public class AddLibrarianPage extends JFrame {
             Pattern contactPattern = Pattern.compile(contactRegex);
             Matcher contactMatcher = contactPattern.matcher(contactVal);
             l = new Librararian();
-            if (list.isEmpty()){
-                id = 1;
-            }
-            else {
-                id = list.get(list.size() - 1).getId() + 1;
-            }
-            l.setId(id);
+//            if (list.isEmpty()){
+//                id = 1;
+//            }
+//            else {
+//                id = list.get(list.size() - 1).getId() + 1;
+//            }
+//            l.setId(id);
             String error = "";
             if (nameMatcher.matches()){
                 l.setName(nameVal);
@@ -135,8 +134,14 @@ public class AddLibrarianPage extends JFrame {
                 error += "Invalid Contact!\n";
             }
             if (error.equals("")){
-                list.add(l);
-                JOptionPane.showMessageDialog(this, "Librarian added successfully!");
+                boolean isInserted = AdminDao.insertLibrarian(l);
+                if (isInserted){
+                    JOptionPane.showMessageDialog(this, "Database: Librarian added successfully!");
+                }
+                else {
+                    JOptionPane.showMessageDialog(this, "Error while inserting in database!");
+                }
+//                list.add(l);
                 dispose();
             }
             else {

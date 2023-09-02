@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 public class ReturnBookPage extends JFrame {
     Container c;
-    public ReturnBookPage(ArrayList<Books> list, ArrayList<IssuedBook> issuedBooksList){
+    public ReturnBookPage(){
         c = getContentPane();
         JLabel label = new JLabel("Return Book");
         label.setBounds(200, 50, 200, 50);
@@ -64,23 +64,28 @@ public class ReturnBookPage extends JFrame {
             }
             else {
                 boolean isFound = false;
+                ArrayList<IssuedBook> issuedBooksList = LibrarianDao.getIssuedBooks();
+                ArrayList<Books> listOfBooks = LibrarianDao.getAllBooks();
                 for (IssuedBook issuedBook : issuedBooksList) {
                     if (issuedBook.getBookCallNo().equalsIgnoreCase(callNo) && issuedBook.getStudentId().equalsIgnoreCase(stuId)) {
                         isFound = true;
-                        for (Books book : list) {
+                        for (Books book : listOfBooks) {
                             if (book.getCallNo().equalsIgnoreCase(callNo)) {
-                                book.setQuantity(book.getQuantity() + 1);
-                                book.setIssuedQuantity(book.getIssuedQuantity() - 1);
+                                if (LibrarianDao.returnBook(issuedBook, book)){
+                                    JOptionPane.showMessageDialog(this, "Book is returned successfully!");
+                                    dispose();
+                                }
+                                else {
+                                    JOptionPane.showMessageDialog(this, "Error while returning book from DB!");
+                                }
                                 break;
                             }
                         }
-                        issuedBooksList.remove(issuedBook);
                         break;
                     }
                 }
                 if (isFound) {
-                    JOptionPane.showMessageDialog(this, "Book is returned successfully!");
-                    dispose();
+
                 } else {
                     JOptionPane.showMessageDialog(this, "Sorry, unable to return book!");
                 }

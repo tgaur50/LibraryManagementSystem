@@ -4,16 +4,18 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ViewIssuedBooksPage extends JFrame {
     Container c;
-    public ViewIssuedBooksPage(ArrayList<IssuedBook> list){
+    public ViewIssuedBooksPage(){
         c = getContentPane();
         String[] headers = {"Id", "Book CallNo", "Student Id", "Student Name", "Student Contact", "Issued Date"};
         DefaultTableModel dmt = new DefaultTableModel(headers, 0);
         JTable table = new JTable(dmt);
         JScrollPane sp = new JScrollPane(table);
 
+        ArrayList<IssuedBook> list = LibrarianDao.getIssuedBooks();
         for (IssuedBook book : list) {
             String[] row = {String.valueOf(book.getId()), book.getBookCallNo(), book.getStudentId(), book.getStudentName(),
                     book.getStudentContact(), book.getIssuedDate()};

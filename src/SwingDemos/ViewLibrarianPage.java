@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class ViewLibrarianPage extends JFrame {
     Container c;
-    public ViewLibrarianPage(ArrayList<Librararian> list){
+    public ViewLibrarianPage(){
         c = getContentPane();
         String[] headers = {"id", "Name", "Password", "Email", "Address", "City", "Contact"};
         DefaultTableModel dmt = new DefaultTableModel(headers, 0);
@@ -16,12 +16,10 @@ public class ViewLibrarianPage extends JFrame {
         sp.setBounds(0, 0, 600, 600);
         c.add(sp);
 
-        for (int i = 0; i < list.size(); i++){
-//            String[] row = {String.valueOf((i + 1)), list.get(i).getName(), list.get(i).getPassword(), list.get(i).getEmail(),
-//                    list.get(i).getAddress(), list.get(i).getCity(), list.get(i).getContact()};
-
-            String[] row = {String.valueOf(list.get(i).getId()), list.get(i).getName(), list.get(i).getPassword(), list.get(i).getEmail(),
-                    list.get(i).getAddress(), list.get(i).getCity(), list.get(i).getContact()};
+        ArrayList<Librararian> list = AdminDao.getLibrarians();
+        for (Librararian l: list) {
+            String[] row = {String.valueOf(l.getId()), l.getName(), l.getPassword(), l.getEmail(), l.getAddress(),
+                    l.getCity(), l.getContact()};
             dmt.addRow(row);
         }
 

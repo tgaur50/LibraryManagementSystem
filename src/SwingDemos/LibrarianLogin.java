@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class LibrarianLogin extends JFrame{
     Container c;
-    public LibrarianLogin(ArrayList<Librararian> list, ArrayList<Books> bookList, ArrayList<IssuedBook> issuedBookList){
+    public LibrarianLogin(){
         c = getContentPane();
         JLabel label = new JLabel("Librarian Login Form");
         label.setBounds(200, 100, 200, 50);
@@ -32,6 +32,7 @@ public class LibrarianLogin extends JFrame{
             String lName = name.getText();
             String lPwd = password.getText();
             boolean isFound = false;
+            ArrayList<Librararian> list = AdminDao.getLibrarians();
             for (Librararian librarian : list) {
                 if (librarian.getName().equals(lName) && librarian.getPassword().equals(lPwd)) {
                     isFound = true;
@@ -40,7 +41,7 @@ public class LibrarianLogin extends JFrame{
             }
             if (isFound){
                 dispose();
-                new LibrarianPage(bookList, issuedBookList);
+                new LibrarianPage();
             }
             else{
                 JOptionPane.showMessageDialog(this, "Invalid Credentials!");

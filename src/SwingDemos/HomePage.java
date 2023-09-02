@@ -22,11 +22,11 @@ class LibraryHomePage extends JFrame {
         librarian.setBounds(200, 220, 200, 50);
 
         admin.addActionListener(e -> {
-            new AdminLogin(listOfLibrarians);
+            new AdminLogin();
         });
 
         librarian.addActionListener(e -> {
-            new LibrarianLogin(listOfLibrarians, listOfBooks, listOfIssuedBooks);
+            new LibrarianLogin();
         });
 
         c.add(label);

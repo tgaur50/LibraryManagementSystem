@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 
 public class AddBooksPage extends JFrame {
     Container c;
-    public AddBooksPage(ArrayList<Books> list){
+    public AddBooksPage(){
         c = getContentPane();
         JLabel label = new JLabel("Add Books");
         label.setBounds(200, 50, 200, 50);
@@ -79,13 +79,13 @@ public class AddBooksPage extends JFrame {
 
             Books b = new Books();
             String error = "";
-            if (list.isEmpty()){
-                id = 1;
-            }
-            else {
-                id = list.get(list.size() - 1).getId() + 1;
-            }
-            b.setId(id);
+//            if (list.isEmpty()){
+//                id = 1;
+//            }
+//            else {
+//                id = list.get(list.size() - 1).getId() + 1;
+//            }
+//            b.setId(id);
             if (callNoMatcher.matches()){
                 b.setCallNo(cNo);
             }
@@ -119,9 +119,13 @@ public class AddBooksPage extends JFrame {
             if (error.equals("")){
                 b.setIssuedQuantity(0);
                 b.setAddedDate(date);
-                list.add(b);
-                JOptionPane.showMessageDialog(this, "Book is added successfully!");
-                dispose();
+                if (LibrarianDao.addBooksToDB(b)){
+                    JOptionPane.showMessageDialog(this, "Book is added successfully!");
+                    dispose();
+                }
+                else {
+                    JOptionPane.showMessageDialog(this, "Error while inserting to DB!");
+                }
             }
             else {
                 JOptionPane.showMessageDialog(this, error);

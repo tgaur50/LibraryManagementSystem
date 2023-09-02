@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 public class AdminLogin extends JFrame {
     Container c;
-    public AdminLogin(ArrayList<Librararian> list){
+    public AdminLogin(){
         c = getContentPane();
         JLabel label = new JLabel("Admin Login Form");
         label.setBounds(200, 100, 200, 50);
@@ -34,7 +34,7 @@ public class AdminLogin extends JFrame {
             String pwd = password.getText();
             if (n.equalsIgnoreCase("admin") && pwd.equalsIgnoreCase("admin123")){
                 dispose();
-                new AdminPage(list);
+                new AdminPage();
             }
             else {
                 JOptionPane.showMessageDialog(this, "Invalid Credentials!");

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class LibrarianPage extends JFrame {
     Container c;
-    public LibrarianPage(ArrayList<Books> list, ArrayList<IssuedBook> issuedBooksList){
+    public LibrarianPage(){
         LibraryManagement lm = new LibraryManagement();
         c = getContentPane();
         JLabel label = new JLabel("Librarian Section");
@@ -33,23 +33,23 @@ public class LibrarianPage extends JFrame {
         c.add(logout);
 
         addBooks.addActionListener(e -> {
-            new AddBooksPage(list);
+            new AddBooksPage();
         });
 
         viewBooks.addActionListener(e -> {
-            new ViewBooksPage(list);
+            new ViewBooksPage();
         });
 
         issueBook.addActionListener(e -> {
-            new IssueBookPage(list, issuedBooksList);
+            new IssueBookPage();
         });
 
         viewIssuedBooks.addActionListener(e -> {
-            new ViewIssuedBooksPage(issuedBooksList);
+            new ViewIssuedBooksPage();
         });
 
         returnBook.addActionListener(e -> {
-            new ReturnBookPage(list, issuedBooksList);
+            new ReturnBookPage();
         });
 
         logout.addActionListener(e -> {

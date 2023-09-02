@@ -10,6 +10,8 @@ public class IssuedBook {
     private String studentContact;
     private String issuedDate;
 
+    public IssuedBook(){}
+
     public IssuedBook(int id, String bookCallNo, String studentId, String studentName, String studentContact, String issuedDate) {
         this.id = id;
         this.bookCallNo = bookCallNo;

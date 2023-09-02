@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class AdminPage extends JFrame {
     Container c;
-    public AdminPage(ArrayList<Librararian> list){
+    public AdminPage(){
         c = getContentPane();
         JLabel label = new JLabel("Admin Section");
         label.setBounds(200, 100, 200, 50);
@@ -26,15 +26,15 @@ public class AdminPage extends JFrame {
         c.add(logout);
 
         addLibrarian.addActionListener(e -> {
-            new AddLibrarianPage(list);
+            new AddLibrarianPage();
         });
 
         viewLibrarian.addActionListener(e -> {
-            new ViewLibrarianPage(list);
+            new ViewLibrarianPage();
         });
 
         deleteLibrarian.addActionListener(e -> {
-            new DeleteLibrarianPage(list);
+            new DeleteLibrarianPage();
         });
 
         logout.addActionListener(e -> {
