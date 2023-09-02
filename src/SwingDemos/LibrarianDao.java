@@ -49,7 +49,9 @@ public class LibrarianDao {
                 prepStm.setInt(6, b.getIssuedQuantity());
                 prepStm.setString(7, b.getAddedDate());
             }
-            prepStm.executeUpdate();
+            if (prepStm != null) {
+                prepStm.executeUpdate();
+            }
             isDone = true;
         }
         catch (Exception e){
