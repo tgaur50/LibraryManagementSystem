@@ -13,11 +13,13 @@ public class LibrarianDao {
             Connection con = CreateConnection.createConnection();
             String query;
             boolean isFound = false;
-            PreparedStatement prepStm;
+            boolean isDuplicate = false;
+            PreparedStatement prepStm = null;
             ArrayList<Books> list = getAllBooks();
             Books foundBook = null;
             for (Books book : list) {
                 if (book.getCallNo().equalsIgnoreCase(b.getCallNo())) {
+                    isDuplicate = true;
                     if (book.getBookName().equalsIgnoreCase(b.getBookName())
                             && book.getAuthorName().equalsIgnoreCase(b.getAuthorName())
                             && book.getPublisherName().equalsIgnoreCase(b.getPublisherName())) {
@@ -27,12 +29,14 @@ public class LibrarianDao {
                     }
                 }
             }
-            if (isFound){
-                query = "update Books SET quantity=?, issued=? where callNo=?";
-                prepStm = con.prepareStatement(query);
-                prepStm.setInt(1, (foundBook.getQuantity() + b.getQuantity()));
-                prepStm.setInt(2, foundBook.getIssuedQuantity());
-                prepStm.setString(3, b.getCallNo());
+            if (isDuplicate) {
+                if (isFound) {
+                    query = "update Books SET quantity=?, issued=? where callNo=?";
+                    prepStm = con.prepareStatement(query);
+                    prepStm.setInt(1, (foundBook.getQuantity() + b.getQuantity()));
+                    prepStm.setInt(2, foundBook.getIssuedQuantity());
+                    prepStm.setString(3, b.getCallNo());
+                }
             }
             else {
                 query = "insert into Books(callNo, name, author, publisher, quantity, issued, added_date) values(?, ?, ?, ?, ?, ?, ?)";
